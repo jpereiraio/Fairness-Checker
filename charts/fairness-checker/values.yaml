@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: your-docker-repo/fairness-checker
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+env:
+  DB_HOST: your-db-host
+  DB_PORT: "5432"
+  DB_NAME: your-db-name
+  DB_USER: your-db-user
+  DB_PASS: your-db-password
+  S3_BUCKET: your-s3-bucket
+  S3_PREFIX: input/
+  OUTPUT_PREFIX: fairness-reports/
+  AWS_REGION: us-east-1
+  CHECK_INTERVAL_SECONDS: "43200"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
